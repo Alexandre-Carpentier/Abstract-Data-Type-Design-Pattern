@@ -33,7 +33,7 @@ HTEXTFILE init_file(LPSTR szFile)
 
 // Update the status
 
-	strcpy_s(pFileStruct->status, "Openned");
+	strcpy_s(pFileStruct->status, sizeof(pFileStruct->status-1), "Openned");
 
 // Define a maximal characters length to write in the file
 
@@ -48,23 +48,23 @@ HTEXTFILE init_file(LPSTR szFile)
 BOOL write_file(HTEXTFILE hFile, LPSTR text)
 {
 	if (hFile == NULL)																	// Check if the object is valid
-		return NULL;
+		return FALSE;
 
 	PFILESTRUCT pFileStruct = (PFILESTRUCT)hFile;										// Cast hFile to the struct object
 	if(strcmp(pFileStruct->status, "Openned") != 0)			
-		return NULL;
+		return FALSE;
 
 	fwrite(text, sizeof(CHAR), strnlen_s(text, pFileStruct->text_max_len), pFileStruct->pFile);	// Write inside the file for a max amount of 1000 characters
-	return TRUE;
+	return FALSE;
 }
 
 BOOL close_file(HTEXTFILE hFile)
 {
 	if (hFile == NULL)
-		return NULL;
+		return FALSE;
 
 	PFILESTRUCT pFileStruct = (PFILESTRUCT)hFile;										// Cast hFile to the struct object 
 	fclose(pFileStruct->pFile);															// Close the file
 	free(pFileStruct);																	// Free the struct from the allocated memory
-	return TRUE;
+	return FALSE;
 }
