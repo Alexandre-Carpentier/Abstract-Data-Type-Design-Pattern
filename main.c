@@ -16,5 +16,5 @@ int main(void)
 	hFile = init_file((LPSTR)"Test.txt");											// Init the file by creating the file on disk and open it
 	write_file(hFile, (LPSTR)"Text inside the file\n");								// Write text inside the file
 	close_file(hFile);																// Close the file
-	return EXIT_SUCCESS;															// Exiting
+	return EXIT_SUCCESS;															// Exiting with success
 }
