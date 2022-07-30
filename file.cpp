@@ -10,7 +10,7 @@ typedef struct {
 	FILE* pFile;																		// Hold the file pointer descriptor
 	char status[32];																	// Hold the current status of the object
 	int text_max_len;
-}FILESTRUCT, * PFILESTRUCT;																// Declaration the struct
+}FILESTRUCT, * PFILESTRUCT;																
 
 
 HTEXTFILE init_file(LPSTR szFile)
