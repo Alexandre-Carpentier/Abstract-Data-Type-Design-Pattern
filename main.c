@@ -1,5 +1,5 @@
 // Abstract data type design pattern demo
-// This model can be used for building an API
+// This model can be used for building an API if "file.c" API is embeded in a DLL (encapsulation)
 // All the implementation details are located in file.c
 // The header contain everything you need to work with the API file.h
 // 
