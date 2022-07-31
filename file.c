@@ -13,7 +13,7 @@ typedef struct {
 }FILESTRUCT, * PFILESTRUCT;																
 
 
-HTEXTFILE init_file(LPSTR szFile)
+HTEXTFILE init_file(CONST LPSTR szFile)
 {
 	PFILESTRUCT pFileStruct = NULL;														// Declara a pointer to the object and initialize with NULL	
 	pFileStruct = (PFILESTRUCT)malloc(sizeof(FILESTRUCT));								// Create the object in memory dynamically
@@ -33,7 +33,7 @@ HTEXTFILE init_file(LPSTR szFile)
 
 // Update the status
 
-	strcpy_s(pFileStruct->status, sizeof(pFileStruct->status-1), "Openned");
+	strcpy_s(pFileStruct->status, sizeof(pFileStruct->status)-1, "Openned");
 
 // Define a maximal characters length to write in the file
 
@@ -45,7 +45,7 @@ HTEXTFILE init_file(LPSTR szFile)
 	return pFileStruct;
 }
 
-BOOL write_file(HTEXTFILE hFile, LPSTR text)
+BOOL write_file(CONST HTEXTFILE hFile, LPSTR text)
 {
 	if (hFile == NULL)																	// Check if the object is valid
 		return FALSE;
@@ -55,10 +55,10 @@ BOOL write_file(HTEXTFILE hFile, LPSTR text)
 		return FALSE;
 
 	fwrite(text, sizeof(CHAR), strnlen_s(text, pFileStruct->text_max_len), pFileStruct->pFile);	// Write inside the file for a max amount of 1000 characters
-	return FALSE;
+	return TRUE;
 }
 
-BOOL close_file(HTEXTFILE hFile)
+BOOL close_file(CONST HTEXTFILE hFile)
 {
 	if (hFile == NULL)
 		return FALSE;
