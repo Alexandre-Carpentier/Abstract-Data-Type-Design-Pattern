@@ -10,6 +10,7 @@
 
 #include "file.h"
 
+#ifdef _DEBUG
 int main(void)
 {
 	HTEXTFILE hFile = NULL;															// Create handle to the object hFile of type HTEXTFILE
@@ -18,3 +19,24 @@ int main(void)
 	close_file(hFile);																// Close the file
 	return EXIT_SUCCESS;															// Exiting with success
 }
+
+#else
+BOOL WINAPI DllMain( HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved )  
+{
+    switch (fdwReason)
+    {
+    case DLL_PROCESS_ATTACH:
+        break;
+
+    case DLL_THREAD_ATTACH:
+        break;
+
+    case DLL_THREAD_DETACH:
+        break;
+
+    case DLL_PROCESS_DETACH:
+        break;
+    }
+    return TRUE; 
+}
+#endif
